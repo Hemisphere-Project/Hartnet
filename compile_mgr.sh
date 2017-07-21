@@ -3,9 +3,9 @@ rm dll/mgr-artnet-r512.dll
 
 #### SET THESE DIRECTORIES as needed !
 #INC_ARTNET=./libartnet/
-INC_ARTNET=/home/mgr/mgr-artnet-dll/libartnet/include
+INC_ARTNET=/home/mgr/Hartnet-master/libartnet/include
 #LIB_ARTNET=/usr/local/lib
-LIB_ARTNET=/home/mgr/mgr-artnet-dll/libartnet/lib
+LIB_ARTNET=/home/mgr/Hartnet-master/libartnet/lib
 
 echo '=== Compiling mgr-artnet-r512.dll'
 g++ -Wall -I $INC_ARTNET ./mgr-artnet-r512.c -shared -o dll/mgr-artnet-r512.dll \
