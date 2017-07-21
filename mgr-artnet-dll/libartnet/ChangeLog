@@ -1,0 +1,169 @@
+23.10.2008
+    new define in private.h
+    //#define NOT_ALL_IFACES 
+    for compatibility with original libartnet
+    
+    in libartnet-win32 the function get_ifaces()
+    gets all interfaces 
+    (including not connected interfaces and loopback)
+    by default
+    You can deactivate this behaviour by uncommenting
+    the define
+    #define NOT_ALL_IFACES
+    
+    BUT: i was able to receive from local applications
+    on linux when listing all interfaces !
+    For more details see the documentation
+
+
+xx/yy/2008
+		Lutz Hillebrand (ilLUTZminator)
+	
+	  ( look for ### LH in files)
+		* port to WIN32
+		* enable multiple nodes on same ip address
+		* enable binding to special ip address
+		* set another broadcast mask
+		
+		=== MOST IMPORTANT ===
+		=== Multiple nodes on same ip address:
+		Although artnet gives you the opportunity to transfer
+		DMX data via ethernet, it should be possible to have
+		several artnet nodes on the same computer
+		(for example DMX-Software / artnet-sender, artnet-receiver,
+		 artnet-monitor ...)
+		
+		This can be done by using the option SO_REUSEADDR for the sockets.
+		Call 
+		o artnet_new_mod() with artnet_start_params -> reuse = 1
+		instead of
+		o artnet_new()
+		to make it possible to run several nodes on the same pc
+		
+		IMPORTANT: Many dmx programs do not use that option so
+		first start your dmx software and then start artnet-software
+		made with this library. The other order might not work
+		  
+		Examples in the subdirectory:
+		As i am no specialist in makefiles there is no makefile for
+		win32. Just use compile.bat and change the directories 
+		according to your needs.
+		
+	
+
+4/11/2007 Simon Newton <<nomis52@westnet.com.au>
+    * Removed artnet_init
+    * cleaned up code style
+    * removed #defines
+    * implemented Artnet II
+
+25/12/2006 Simon Newton <<nomis52@westnet.com.au>
+
+    * minor code cleanup, removed a bunch of magic numbers
+
+24/12/2006 Simon Newton <<nomis52@westnet.com.au>
+
+    * bug fix for OS X
+
+12/6/2006 Simon Newton <<nomis52@westnet.com.au>
+
+    * applied patches to network.c from Justin Cormack to skip interfaces
+      without addresses
+
+12/6/2006 Simon Newton <<nomis52@westnet.com.au>
+
+    * added functions to set the oem and esta codes
+
+9/5/2006 Simon Newton <<nomis52@westnet.com.au>
+
+    * changed to using a single descriptor bound to *.6454
+
+18/4/2006 Simon Newton <<nomis52@westnet.com.au>
+
+    * Received ESTA Manufacturer ID
+
+17/4/2006 Simon Newton <<nomis52@westnet.com.au>
+
+    * Fixed ArtPollReply length bug
+
+16/9/2005 Simon Newton <<nomis52@westnet.com.au>
+
+    * Fixed compile issues on OS X
+
+28/8/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * Fixed error handling in net_start
+
+26/8/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * Fixed get_ifaces to return hw addrs correctly for aliased ifaces
+
+12/8/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * Changed to a new error reporting scheme
+    * Applied patch from Samuli Valo to fix get_ifaces on x86-64
+
+7/05/2005 Simon Newton <nomis52@westnet.com.au>
+
+   * fixed bug in number of ports reported
+   * included tod.h and misc.h :)
+   * fixed typo with IPV6
+   * removed static path for pkgconfig data
+
+30/04/2005 Simon Newton <nomis52@westnet.com.au>
+
+   * minor cleanup, now reports numb of ports correctly
+
+30/04/2005 Simon Newton <nomis52@westnet.com.au>
+
+   * started adding RDM support
+
+25/04/2005 Simon Newton <nomis52@westnet.com.au>
+
+   * fixed the inet_aton bug
+
+18/04/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * Added the endian conversion functions
+
+12/04/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * More OSX fixes
+
+9/04/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * Fixed the seg fault if no network interfaces are present
+
+18/3/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * added artnet_destroy
+
+17/3/2005 Simon Newton <nomis52@westnet.com.au>
+
+    * added c++ linking support
+
+16/3/2005 Simon Newton <nomis52@westnet.net>
+
+    * merged bugfixes from multicast branch to trunk
+
+27/2/2005 Simon Newton <nomis52@westnet.net>
+
+    * split examples from the library
+    * depricated artnet_init
+
+23/2/2005 Simon Newton <nomis52@westnet.net>
+
+    * added basic node joining support
+
+12/2/2005 Simon Newton <nomis52@westnet.net>
+
+    * Fixed compiler warnings
+    * Fixed minor problems relating to a node's ip address
+
+11/2/2005 Simon Newton <nomis52@westnet.net>
+
+    * Changed the licence to the LGPL
+    * Added new "debug" parameter to artnet_init()
+    * Fixed LTP bug (L = latest not lowest as I orginally thought)
+    * Added firmware receive support - new example program artnet_firmware_node
+    * Added firmware send support - new example program artnet_firmware_server

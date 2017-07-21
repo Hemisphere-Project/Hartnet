@@ -1,0 +1,10 @@
+
+### LH - 22.08.2008
+artnet.c  artnet_nl_update()
+  Allow more than one entry per IPaddress
+	
+
+to get reply working:
+	fix video.remote
+	fix stop / start procedure
+
